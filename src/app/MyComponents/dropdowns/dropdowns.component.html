@@ -106,7 +106,6 @@
 
 <div *ngIf="totalPages > 1" class="navigation">
     <button (click)="goToPrev()" [disabled]="curPage === 1" class="btn">Previous</button>
-    <input/>
     <span>{{ curPage }} / {{ totalPages }}</span>
     <button (click)="goToNext()" [disabled]="curPage === totalPages" class="btn">Next</button>
 </div>
