@@ -1,0 +1,117 @@
+
+<div  style="display: flex;">
+
+<div class="col-sm-5 mt-3" style="margin-left: 40px;">
+    <select name="Department" class="form-control" [(ngModel)]="selectedName" placeholder="--select field--">
+        <option value>----- select field-----</option>
+        <option value="momId">momId</option>
+        <option value="title">title</option>
+        <option value="venue">venue</option>
+        <option value="meetingDate">meetingDate</option>
+        <option value="chairPerson">chairPerson</option>
+        <option value="mode">mode</option>
+        <option value="keywords">keywords</option>
+        <option value="name">name</option>
+        <option value="decissionPoint">decissionPoint</option>
+        <option value="actionPoint">actionPoint</option>
+        <option value="editedBy">editedBy</option>
+        <option value="editTime">editTime</option>
+        <option value="remarks">remarks</option>
+        <option value="status">status</option>
+        <option value="linkedMOM">linkedMOM</option>
+        <option value="pdfFile">pdfFile</option>
+        <option value="momEditHistoryResponse">momEditHistoryResponse</option>
+    </select>
+</div>
+<div class="search-hero mt-3" style="margin-left: 20px;">
+    <input type="text" name="search" [(ngModel)]="searchText"  placeholder="select in {{selectedName}}">
+    <button style="margin-left: 9px;" (click)="filterData()">search</button>
+    <button style="margin-left: 9px;" (click)="resetTable()">reset</button>
+    
+</div>
+</div>
+<div >
+
+    <table>
+        <tr>
+            <th>momId</th>
+            <th>title</th>
+            <th>venue</th>
+            <th>meetingDate</th>
+            <th>chairPerson</th>
+            <th>mode</th>
+            <th>keywords</th>
+            <th>momAttendeesResponse</th>
+            <th>momActionResponse</th>
+            <th>editedBy</th>
+            <th>editTime</th>
+            <th>remarks</th>
+            <th>status</th>
+            <th>linkedMOM</th>
+            <th>pdfFile</th>
+            <th>momEditHistoryResponse</th>
+        </tr>
+        
+        <tr *ngFor="let datas of newDataSz">
+            <td>{{ datas.momId }}</td>
+            <td>{{ datas.title }}</td>
+            <td>{{ datas.venue }}</td>
+            <td>{{ datas.meetingDate }}</td>
+            <td>{{ datas.chairPerson }}</td>
+            <td>{{ datas.mode }}</td>
+            <td>{{ datas.keywords }}</td>
+            <td><table>
+                <tr>
+                    <th>attendeesId</th>
+                    <th>name</th>
+                    <th>designation</th>
+                    <th>organization</th>
+                    <th>email</th>
+                </tr>
+                <tr *ngFor="let subD of datas.momAttendeesResponse">
+                    <td>{{subD.attendeesId}}</td>
+                    <td>{{subD.name}}</td>
+                    <td>{{subD.designation}}</td>
+                    <td>{{subD.organization}}</td>
+                    <td>{{subD.email}}</td>
+                </tr>
+            </table></td>
+
+            <td><table>
+                <tr>
+                    <th>momId</th>
+                    <th>actionId</th>
+                    <th>decissionPoint</th>
+                    <th>actionPoint</th>
+                    <th>status</th>
+                </tr>
+                <tr *ngFor="let subD of datas.momActionResponse">
+                    <td>{{subD.momId}}</td>
+                    <td>{{subD.actionId}}</td>
+                    <td>{{subD.decissionPoint}}</td>
+                    <td>{{subD.actionPoint}}</td>
+                    <td>{{subD.status}}</td>
+                </tr>
+            </table></td>
+            <td>{{ datas.editedBy }}</td>
+            <td>{{ datas.editTime }}</td>
+            <td>{{ datas.remarks }}</td>
+            <td>{{ datas.status }}</td>
+            <td>{{ datas.linkedMOM }}</td>
+            <td>{{ datas.pdfFile }}</td>
+            <td>{{ datas.momEditHistoryResponse }}</td>
+        </tr>
+    </table>
+</div>
+
+<div *ngIf="totalPages > 1" class="navigation">
+    <button (click)="goToPrev()" [disabled]="curPage === 1" class="btn">Previous</button>
+    <span>{{ curPage }} / {{ totalPages }}</span>
+    <button (click)="goToNext()" [disabled]="curPage === totalPages" class="btn">Next</button>
+</div>
+
+
+
+
+
+
